@@ -49,6 +49,7 @@ Rules:
 - habitSuggestion must mention every habit they gave (by name), and suggest starting tiny with one of them today
 - If 2+ habits exist, create an ordered mini-plan (what first, what next) and add a gentle reward idea.
 - If conversation history is provided, continue naturally from it; do not repeat the previous answer verbatim; build on what the user said before.
+- Prefer nuanced emotions when possible (e.g. depresif, umutsuz, kaygılı, yorgun, heyecanlı, huzurlu) instead of generic labels.
 
 Return ONLY JSON:
 {
@@ -368,6 +369,33 @@ function analyzeMoodLocal(text, habits = [], priorTurns = []) {
       "Sana iyi gelen minik bir şey seç: müzik, çay, kısa yürüyüş; sonra kendine bir cümle yaz.";
     microTask =
       "5 dk: Pencereye çık, derin nefes al veya kısa bir yürüyüş yap — sonra tek bir cümle: 'Bugün beni biraz rahatlatan şey: …'";
+  } else if (
+    t.includes("depresif") ||
+    t.includes("umutsuz") ||
+    t.includes("çökkün") ||
+    t.includes("cokkun") ||
+    t.includes("değersiz") ||
+    t.includes("degersiz")
+  ) {
+    emotion = "depresif / çökkün";
+    empatheticResponse =
+      "Bunu yaşamak gerçekten ağır gelebilir; bunu tek başına taşıman gerekmiyor. Küçük ve yumuşak adımlar şu an fazlasıyla yeterli.";
+    mainAction =
+      "Kendine bugün için tek ve çok küçük bir hedef koy: sadece başlamak. Sonra bir yakınından mini destek iste.";
+    microTask =
+      "5 dk: Perdeyi aç, bir bardak su iç, bulunduğun yerde 10 derin nefes al ve tek bir cümle yaz: 'Şu an bana iyi gelecek en küçük şey: ...'";
+  } else if (
+    t.includes("mutlu") ||
+    t.includes("huzurlu") ||
+    t.includes("iyi hissed")
+  ) {
+    emotion = "mutlu / huzurlu";
+    empatheticResponse =
+      "Bu iyi halini görmek çok güzel; bu anı korumak için küçük bir ritüel eklemek harika olur.";
+    mainAction =
+      "Bugünkü olumlu enerjini bir alışkanlık başlangıcına bağla: kısa ama düzenli bir adım seç.";
+    microTask =
+      "5 dk: Bugün iyi hissettiren şeyi not et ve yarın da tekrar etmek için mini bir saat belirle.";
   } else if (t.includes("odak") || t.includes("dikkat") || t.includes("dağınık") || t.includes("daginik")) {
     emotion = "dağınık / odakta zorlanan";
     empatheticResponse =
