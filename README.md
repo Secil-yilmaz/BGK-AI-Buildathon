@@ -56,6 +56,7 @@ Repo içinde `api/` ve `functions/` altında **Netlify Functions** için denemel
 Tarayıcıdan doğrudan API çağrısı yapıyorsanız anahtarın istemciye gitmesi risklidir.
 
 [Proje Sunum Videosu] (https://youtu.be/ag3bSwXJgYc?si=Om121tqaqcTQSbbI)
+
 [Yayın Linki] (https://mood2action-ai.netlify.app/)
-Bu repo prototip amaçlıdır; gerçek prod kullanımında anahtarları sunucu tarafında (Netlify Functions gibi) tutmanız önerilir.
+
 
