@@ -20,7 +20,6 @@ npm install
 
 ### Ortam değişkenleri
 
-Projede API anahtarlarını **asla** repoya koymayın.
 
 `.env` (kök dizin):
 
